@@ -1,0 +1,261 @@
+@font-face {
+font-family: 'Permanent Marker';
+font-style: normal;
+font-weight: normal;
+src: local('Permanent Marker'), url('../fonts/PermanentMarker.woff') format('woff');
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Segoe UI', 'Roboto', 'Century Gothic', 'Cambria', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.btn {
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 1rem;
+  border: 0;
+  border-radius: 2px;
+}
+.btn:hover {
+  cursor: pointer;
+}
+.btn:focus {
+  outline: 0;
+}
+
+.input {
+  border-radius: 2px;
+  border: 0;
+  height: 2rem;
+  background-color: transparent;
+  font-size: 1.5rem;
+  font-family: 'Segoe UI', 'Roboto', 'Century Gothic', 'Cambria', 'Arial', sans-serif;
+  padding: 0;
+}
+.input:focus {
+  outline: 0;
+}
+
+/*
+ * INTRO */
+.section_intro {
+  z-index: 1;
+}
+.section_intro.hidden {
+  opacity: 0;
+  transition: 1s opacity .3s linear;
+  z-index: -1
+}
+
+.intro__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.intro-enter-active .content {
+  animation: fadeOut 15s;
+}
+
+.intro__title {
+  text-decoration: none;
+  font-weight: normal;
+  text-align: center;
+  width: 400px;
+}
+
+.intro__input-wrap {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.intro__input {
+  text-align: center;
+  vertical-align: top;
+}
+
+.intro__name {
+  width: 400px;
+}
+
+.intro__class {
+  width: 3rem;
+  font-size: 1.5rem;
+}
+
+.intro__btn {
+  display: inline-block;
+  margin-top: 24px;
+}
+
+/*
+ * BLITZ */
+.section_blitz {
+  overflow: hidden;
+  z-index: 5;
+}
+
+.blitz__content {
+  background-color: #222222;
+  border-radius: 2px;
+  box-shadow: 0 1px 0 0 #282828, 0 0 0 1px #282828;
+  width: 800px;
+  min-height: 300px;
+  max-height: 100%;
+  left: 0;
+  right: 0;
+  transition: box-shadow 3s ease-in-out, height .3s ease-in-out;
+  position: relative;
+}
+
+.blitz-enter-active .content, .blitz-leave-active .content {
+  transition: all .5s;
+  margin-top: 0;
+}
+.blitz-enter-active {
+  animation: bounceInUp 1s;
+}
+.blitz-leave-active {
+  animation: bounceOutUp 1.1s;
+}
+
+@keyframes bounceInUp {
+  from, 60%, 75%, 90%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  from {
+    transform: translate3d(0, 75%, 0);
+  }
+  40% {
+    /*opacity: 1;*/
+    transform: translate3d(0, -30px, 0);
+  }
+  55% {
+    transform: translate3d(0, 15px, 0);
+  }
+  70% {
+    transform: translate3d(0, -7.5px, 0);
+  }
+  80%, to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes bounceOutUp {
+  from, 60%, 75%, 90%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  20% {
+    transform: translate3d(0, -100px, 0);
+  }
+  to {
+    transform: translate3d(0, 3000px, 0);
+  }
+}
+
+.blitz__q {
+  /*width: 100%;*/
+  /*text-align: center;*/
+  padding: 0 16px;
+  font-size: 1rem;
+  font-weight: normal;
+  margin-bottom: 80px;
+}
+
+.blitz-enter,
+.blitz-enter-active {
+  opacity: 1;
+}
+
+.blitz__answer-form {
+  display: flex;
+  width: 100%;
+  height: 48px;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+}
+
+.blitz__input {
+  width: 400px;
+}
+
+.blitz__btn {
+  margin-left: 16px;
+  height: 32px;
+}
+
+/*
+. * RESULT */
+.section_result {
+  z-index: 3
+}
+
+.result__content {
+  text-align: center;
+}
+
+.result__new-message {
+  display: block;
+}
+
+.score__total,
+.score__true {
+  font-weight: bold;
+}
+
+/*
+ * RESULT */
+.msg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translatex(-50%);
+  max-width: 800px;
+  padding: 16px 24px;
+  box-shadow: 0 1px 0 0 #282828, 0 0 0 1px #282828;
+  background-color: #333;
+  border-radius: 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  text-align: center;
+  z-index: 5;
+}
+
+.msg__line {
+  line-height: 2rem;
+}
+
+.msg__newLine {
+  display: block;
+}

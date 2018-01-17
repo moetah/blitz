@@ -1,0 +1,14 @@
+.q .table {
+  display: inline-block;
+  border: 1px solid #d7d8db;
+  border-collapse: collapse;
+}
+.q .table td,
+.q .table th {
+  border: 1px solid #d7d8db;
+  padding: 4px 8px;
+}
+
+.q pre {
+  display: inline-block;
+}

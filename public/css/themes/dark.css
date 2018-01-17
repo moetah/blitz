@@ -1,0 +1,35 @@
+body {
+  background-color: #191919;
+  color: #ddd;
+}
+
+.btn {
+  background-color: #282828;
+  color: #ddd;
+  box-shadow: 0 1px 0 0 #282828, 0 0 0 1px #282828;
+}
+.btn:hover {
+  background-color: #333;
+}
+.btn:focus {
+  box-shadow: 0 1px 0 0 #555, 0 0 0 1px #555;
+}
+
+.intro__input {
+  color: #ddd;
+  box-shadow: 0 1px 0 0 #282828, 0 0 0 1px #282828;
+}
+.intro__input:focus {
+  box-shadow: 0 1px 0 0 #555, 0 0 0 1px #555;
+}
+.intro__option {
+  background-color: #191919;
+  color: #ddd;
+  box-shadow: 0 1px 0 0 #282828, 0 0 0 1px #282828;
+}
+
+
+.blitz__content {
+  background-color: #222222;
+  box-shadow: 0 1px 0 0 #282828, 0 0 0 1px #282828;
+}

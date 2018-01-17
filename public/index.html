@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<title>blitz</title>
+<!-- <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet"> -->
+<link rel="stylesheet" href="./css/main.css">
+<link rel="stylesheet" href="./css/prism.css">
+<link rel="stylesheet" href="./css/markdown.css">
+<link rel="stylesheet" href="./css/themes/light.css">
+<link rel="stylesheet" href="https://unpkg.com/katex@0.9.0-beta/dist/katex.min.css">
+
+<script src="./js/vue.2.5.3.js"></script>
+<script src="./js/socket.io.js"></script>
+</head>
+
+<body class="theme-light">
+<main class="main app">
+
+    <transition name="intro" :duration="200" >
+        <section v-if="intro" class="section section_intro intro">
+            <div class="intro__content content">
+                <h1 class="intro__title">Введи имя и выбери класс.</h1>
+                <label for="" class="intro__input-wrap">
+                    <input type=text class="intro__input input intro__name" v-model=userData.name required @keyup.enter="emitUserData()">
+                    <!-- <input type="text" class="intro__input intro__class"> -->
+                    <select class="intro__input input intro__class" v-model="userData.age" required>
+                        <option class="intro__option" value="9">9</option>
+                        <option class="intro__option" value="11">11</option>
+                    </select>
+                </label>
+                <button class="intro__btn btn btn-submit" @click="emitUserData()">Продолжить</button>
+            </div>
+        </section>
+    </transition>
+    <transition name="blitz" :duration="1000" >
+        <section v-if="blitz" class="section section_blitz">
+            <div class="blitz__content content" >
+                <h3  class="blitz__question blitz__q q"><vue-markdown :source="current.q"></vue-markdown></h3>
+<!--                 <div class="blitz__answers">
+                    <button
+                        class="btn blitz__answer blitz__a a"
+                        v-for="( answer, key ) in current.answers"
+                        :a-id="key + 1"
+                        @click="emitNextQ(current.qId, key); nextQ()"
+                        >{{ answer }}</button>
+                </div> -->
+                <label for="" class="blitz__answer-form">
+                    <input type=text class="blitz__input input" v-model="answer" required @keyup.enter="emitNextQ(currentId, answer);nextQ(); answer = ''"></span><button class="blitz__btn btn btn-submit" @click="emitNextQ(currentId, answer);nextQ(); answer = ''">Ответить</button>
+                </label>
+            </div>
+        </section>
+    </transition>
+    <transition name="result" :duration="-1000" >
+        <section v-if="result" class="section section_result">
+            <div class="result__content content">
+                <span class="result__message result__new-message">Ну что, дружочек {{userData.name}},</span>
+                <span class="result__message">ты правильно ответил на</span>
+                <span class="result__score result__message"><span class="score__true">{{score.true}}</span> из <span class="score__total">{{score.total}}</span></span>
+                <span class="result__message">вопросов</span>
+            </div>
+        </section>
+    </transition>
+</main>
+</body>
+<script src="./js/prism.js"></script>
+<script src="./js/vue-markdown.js"></script>
+<script src="./js/base.js"></script>
+<script src="./js/main.js"></script>
+
+

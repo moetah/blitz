@@ -1,0 +1,50 @@
+body {
+  background-color: #edeef0;
+  color: #333;
+}
+
+.btn {
+  background-color: #f3f3f3;
+  color: #55677d;
+  box-shadow: 0 0 0 1px #eee, 0 0 0 1px #eee;
+}
+.btn:hover {
+  background-color: #e9e9e9;
+}
+
+.intro__btn {
+  background-color: #fff;
+  box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+}
+.btn:focus {
+  box-shadow: 0 1px 0 0 #aaa, 0 0 0 1px #aaa;
+}
+
+.input {
+  background-color: #fff;
+  color: #333;
+  box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+}
+.input:hover {
+  background-color: #f0f2f5;
+}
+.input:focus {
+  background-color: #f0f2f5;
+  box-shadow: 0 1px 0 0 #aaa, 0 0 0 1px #aaa;
+}
+
+.intro__option {
+  background-color: #fff;
+  color: #333;
+  box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+}
+
+
+.blitz__content {
+  background-color: #fff;
+  box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+}
+
+.blitz__q {
+  color: #555;
+}
