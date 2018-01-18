@@ -26,6 +26,8 @@ const port = process.env.PORT || 8000
 server.listen(port)
 app.use(express.static(__dirname + '/public'))
 
+app.get('/project', (req, res) => res.send('https://docs.google.com/document/d/1-FHKz1L9J6VpRLgHlrQrI2NBYBrnYnH6O5LaQ7kAy1I/edit?usp=sharing'))
+
 // emiters
 io.on('connection', function (socket) {
   let userData = {}
