@@ -3,13 +3,13 @@ body {
   color: #333;
 }
 
-.btn {
+.intro__btn {
   background-color: #f3f3f3;
   color: #55677d;
   box-shadow: 0 0 0 1px #eee, 0 0 0 1px #eee;
 }
-.btn:hover {
-  background-color: #e9e9e9;
+.intro__btn:hover {
+  background-color: #f2f2f2;
 }
 
 .intro__btn {
@@ -22,7 +22,7 @@ body {
 
 .input {
   background-color: #fff;
-  color: #333;
+  color: #55677d;;
   box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
 }
 .input:hover {
@@ -39,6 +39,10 @@ body {
   box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
 }
 
+.blitz__btn {
+  background-color: #eee;
+  box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+}
 
 .blitz__content {
   background-color: #fff;

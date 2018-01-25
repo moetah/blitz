@@ -20,13 +20,12 @@
     <transition name="intro" :duration="200" >
         <section v-if="intro" class="section section_intro intro">
             <div class="intro__content content">
-                <h1 class="intro__title">Введи имя и выбери класс.</h1>
+                <h1 class="intro__title">Введи имя и выбери вариант.</h1>
                 <label for="" class="intro__input-wrap">
                     <input type=text class="intro__input input intro__name" v-model=userData.name required @keyup.enter="emitUserData()">
                     <!-- <input type="text" class="intro__input intro__class"> -->
-                    <select class="intro__input input intro__class" v-model="userData.age" required>
-                        <option class="intro__option" value="9">9</option>
-                        <option class="intro__option" value="11">11</option>
+                    <select class="intro__input input intro__class" v-model=userData.var required>
+                        <option class="intro__option" v-for="i in 4" :value="i" autofocus>{{i}}</option>
                     </select>
                 </label>
                 <button class="intro__btn btn btn-submit" @click="emitUserData()">Продолжить</button>
@@ -36,17 +35,9 @@
     <transition name="blitz" :duration="1000" >
         <section v-if="blitz" class="section section_blitz">
             <div class="blitz__content content" >
-                <h3  class="blitz__question blitz__q q"><vue-markdown :source="current.q"></vue-markdown></h3>
-<!--                 <div class="blitz__answers">
-                    <button
-                        class="btn blitz__answer blitz__a a"
-                        v-for="( answer, key ) in current.answers"
-                        :a-id="key + 1"
-                        @click="emitNextQ(current.qId, key); nextQ()"
-                        >{{ answer }}</button>
-                </div> -->
+                <h3  class="blitz__question blitz__q q">№{{currentId + 1}}<vue-markdown :source="current.q"></vue-markdown></h3>
                 <label for="" class="blitz__answer-form">
-                    <input type=text class="blitz__input input" v-model="answer" required @keyup.enter="emitNextQ(currentId, answer);nextQ(); answer = ''"></span><button class="blitz__btn btn btn-submit" @click="emitNextQ(currentId, answer);nextQ(); answer = ''">Ответить</button>
+                    <input type=text class="blitz__input input" v-model="answer" required @keyup.enter="emitNextQ(currentId, answer);   nextQ(); answer = ''"></span><button class="blitz__btn btn btn-submit" @click="emitNextQ(currentId, answer); nextQ(); answer = ''">Ответить</button>
                 </label>
             </div>
         </section>
@@ -54,10 +45,14 @@
     <transition name="result" :duration="-1000" >
         <section v-if="result" class="section section_result">
             <div class="result__content content">
-                <span class="result__message result__new-message">Ну что, дружочек {{userData.name}},</span>
-                <span class="result__message">ты правильно ответил на</span>
-                <span class="result__score result__message"><span class="score__true">{{score.true}}</span> из <span class="score__total">{{score.total}}</span></span>
-                <span class="result__message">вопросов</span>
+                <span class="result__message"><strong>{{userData.name}}</strong> , ты правильно ответил на
+                <span class="score__true">{{score.true}}</span> из <span class="score__total">{{score.total}}</span>
+                вопросов</span>
+                <span v-if="score.true !== score.total" class="result__message result__new-message">Ошибки ты можешь посмотреть ниже</span>
+                <span v-if="score.true === score.total" class="result__message result__new-message">Excellent!</span>
+                <ul class="result__table">
+                    <li v-for="(item, n) in history" class="result__item table__item" :class="item.bool ? 'true' : 'false'"><span class="table__count">{{n+1}}</span><span class="table__value">{{item.a}}</span></li>
+                </ul>
             </div>
         </section>
     </transition>

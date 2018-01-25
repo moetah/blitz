@@ -7,10 +7,6 @@ const io        = require('socket.io')(server)
 
 const blitz     = require('./blitz.js')
 
-// let blitz = fs.readFile('blitz11-1.json', 'utf8', (err, data) => {
-//   return hmm = JSON.parse(data)
-// })
-
 function isAnswerTrue(qId, a) {
   if ( blitz.check[qId] == a ) {
     return 1
@@ -20,7 +16,7 @@ function isAnswerTrue(qId, a) {
 }
 
 // set post
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 8080
 
 // deploy
 server.listen(port)
@@ -36,6 +32,7 @@ io.on('connection', function (socket) {
     false: 0,
     total: 0
   }
+  let history = []
   socket.on('userData', function(_userData) {
     userData = _userData
     console.log(`new user: ${userData.name}:${userData.age} `)
@@ -51,12 +48,17 @@ io.on('connection', function (socket) {
       score.false++
     }
     score.total++
+    history.push({
+      qId: qId,
+      a: a,
+      bool: answer
+    })
     console.log(`${qId} - ${a} : ${answer}`)
     console.log(score)
   })
 
   socket.on('getScore', function() {
-    socket.emit('score', score)
+    socket.emit('score', score, history)
   })
 
   socket.on('done', function(){

@@ -10,6 +10,7 @@ const app = new Vue({
     userData: {},
     blitzData: {},
     score: {},
+    history: [],
     // counter
     currentId: 0,
     //html vars
@@ -25,7 +26,7 @@ const app = new Vue({
   methods: {
     // emiters
     emitUserData: function(cb) {
-      if ( this.userData.age && this.userData.age ) {
+      if ( this.userData.name && this.userData.var ) {
         socket.emit('userData', this.userData)
       } else {
         alert('Пожалуйста введите данные! TehePelo')
@@ -33,6 +34,7 @@ const app = new Vue({
     },
     emitNextQ: function(qId, a) {
       // console.log(key,this.current.answers[key])
+      console.log('em')
       socket.emit('answer', qId, a)
     },
     // section changers
@@ -46,13 +48,32 @@ const app = new Vue({
     },
     // global
     nextQ: function() {
+      console.log('q')
       // checks for
       // dont use toResults here cuz results can 'blink' after showing
       if (this.currentId === ( this.blitzData.length - 1 )) socket.emit('getScore')
-      this.currentId++
+      else this.currentId++
+      setTimeout(function() { app.highlightSyntax() }, 100)
+      // app.highlightSyntax()
+    },
+    highlightSyntax: function() {
+      console.log('hl')
+      let pre = document.querySelectorAll('pre')
+      console.log(pre)
+      for (let i = 0; i < pre.length; i++) {
+        Prism.highlightAllUnder(pre[i], true, function() { console.log('highliting')})
+      }
     },
     jo: function(...args) {
       console.log(...args)
+    },
+    test: function() {
+      // this.emitUserData()
+        socket.emit('userData', this.userData)
+      for (let i = 0; i < 23; i++) {
+        document.querySelectorAll('input')[0].
+        document.querySelectorAll('button')[0].click()
+      }
     }
   }
 })
@@ -66,7 +87,9 @@ socket.on('blitzData', function(data) {
   app.blitzData = data
 })
 
-socket.on('score', function(score) {
+socket.on('score', function(score, history) {
+  console.log(score, history)
   app.toResults()
   app.score = score
+  app.history = history
 })

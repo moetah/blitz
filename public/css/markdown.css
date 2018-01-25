@@ -1,14 +1,37 @@
 .q .table {
   display: inline-block;
-  border: 1px solid #d7d8db;
+  /*border: 1px solid #d7d8db;*/
   border-collapse: collapse;
+  margin-left: 48px;
 }
 .q .table td,
 .q .table th {
   border: 1px solid #d7d8db;
-  padding: 4px 8px;
+  padding: 1px 8px;
 }
 
+.q img {
+  margin-left: 48px;
+}
 .q pre {
   display: inline-block;
+}
+.q pre {
+  margin: 4px 4px 0 0;
+}
+
+br {
+  display: none;
+}
+
+.codes {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.codes * {
+  font-size: 0.80rem;
 }
